@@ -36,7 +36,8 @@ describe Brcobranca::Boleto::Santander do
     boleto_novo.valor.should eql(0.0)
     boleto_novo.valor_documento.should eql(0.0)
     boleto_novo.local_pagamento.should eql("QUALQUER BANCO ATÉ O VENCIMENTO")
-    boleto_novo.carteira.should eql("102")
+    boleto_novo.carteira.should eql("CSR")
+    boleto_novo.carteira_numero.should eql("102")
   end
 
   it "Criar nova instancia com atributos válidos" do
@@ -60,7 +61,8 @@ describe Brcobranca::Boleto::Santander do
     boleto_novo.agencia.should eql("0059")
     boleto_novo.convenio.should eql("1899775")
     boleto_novo.numero_documento.should eql("90000267")
-    boleto_novo.carteira.should eql("102")
+    boleto_novo.carteira.should eql("CSR")
+    boleto_novo.carteira_numero.should eql("102")
   end
 
   it "Gerar boleto" do

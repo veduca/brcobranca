@@ -9,7 +9,7 @@ module Brcobranca
     # @example
     #  "12345678901".to_br_cpf #=> 123.456.789-01
     def to_br_cpf
-      self.to_s.gsub(/^(.{3})(.{3})(.{3})(.{2})$/,'\1.\2.\3-\4')
+      somente_numeros.gsub(/^(.{3})(.{3})(.{3})(.{2})$/,'\1.\2.\3-\4')
     end
 
     # Formata como CEP
@@ -19,7 +19,7 @@ module Brcobranca
     #   "85253100".to_br_cep #=> "85253-100"
     #   85253100.to_br_cep #=> "85253-100"
     def to_br_cep
-      self.to_s.gsub(/^(.{5})(.{3})$/,'\1-\2')
+      somente_numeros.gsub(/^(.{5})(.{3})$/,'\1-\2')
     end
 
     # Formata como CNPJ
@@ -28,7 +28,7 @@ module Brcobranca
     # @example
     #  "12345678000901".to_br_cnpj #=> 12.345.678/0009-01
     def to_br_cnpj
-      self.to_s.gsub(/^(.{2})(.{3})(.{3})(.{4})(.{2})$/,'\1.\2.\3/\4-\5')
+      somente_numeros.gsub(/^(.{2})(.{3})(.{3})(.{4})(.{2})$/,'\1.\2.\3/\4-\5')
     end
 
     # Gera formatação automática do documento baseado no tamanho do campo.

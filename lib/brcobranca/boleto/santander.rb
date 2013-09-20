@@ -8,6 +8,10 @@ module Brcobranca
       # Usado somente em carteiras especiais com registro para complementar o número do documento
       attr_reader :seu_numero
 
+      # Deve ser utilizado pois para o código de barra o numero 102 deve ser enviado. 
+      # Já para o boleto renderizado, pode ser utilizada a sigla da carteira (atributo carteira)
+      attr_accessor :carteira_numero
+
       validates_length_of :agencia, :maximum => 4, :message => "deve ser menor ou igual a 4 dígitos."
       validates_length_of :convenio, :maximum => 7, :message => "deve ser menor ou igual a 7 dígitos."
       validates_length_of :numero_documento, :maximum => 8, :message => "deve ser menor ou igual a 8 dígitos."
@@ -16,8 +20,9 @@ module Brcobranca
       # Nova instancia do Santander
       # @param (see Brcobranca::Boleto::Base#initialize)
       def initialize(campos={})
-        campos = {:carteira => "102",
-                  :conta_corrente => '00000' # Obrigatória na classe base
+        campos = {carteira_numero: "102",
+                  carteira: 'CSR',
+                  conta_corrente: '00000' # Obrigatória na classe base
                   }.merge!(campos)
         super(campos)
       end
@@ -82,9 +87,8 @@ module Brcobranca
       #
       # @return [String] 25 caracteres numéricos.
       def codigo_barras_segunda_parte
-        "9#{self.convenio}00000#{self.numero_documento}0#{self.carteira}"
+        "9#{self.convenio}00000#{self.numero_documento}0#{self.carteira_numero}"
       end
-
     end
   end
 end
