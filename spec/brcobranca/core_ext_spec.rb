@@ -6,6 +6,7 @@ module Brcobranca
     it "Formata o CPF" do
       98789298790.to_br_cpf.should eql("987.892.987-90")
       "98789298790".to_br_cpf.should eql("987.892.987-90")
+      "987.892.987-90".to_br_cpf.should eql("987.892.987-90")
     end
 
     it "Formata o CEP" do
@@ -21,6 +22,7 @@ module Brcobranca
     it "Formata números automáticamente de acordo com o número de caracteres" do
       98789298790.formata_documento.should eql("987.892.987-90")
       "98789298790".formata_documento.should eql("987.892.987-90")
+      "382.404.968-65".formata_documento.should eql("382.404.968-65")
       85253100.formata_documento.should eql("85253-100")
       "85253100".formata_documento.should eql("85253-100")
       88394510000103.formata_documento.should eql("88.394.510/0001-03")

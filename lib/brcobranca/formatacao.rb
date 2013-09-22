@@ -40,7 +40,7 @@ module Brcobranca
     #  "12345678901".formata_documento #=> 123.456.789-01
     #  "12345".formata_documento #=> 12345
     def formata_documento
-      case self.to_s.size
+      case somente_numeros.size
       when 8 then self.to_br_cep
       when 11 then self.to_br_cpf
       when 14 then self.to_br_cnpj
@@ -55,7 +55,7 @@ module Brcobranca
     # @example
     #   1a23e45+".somente_numeros #=> 12345
     def somente_numeros
-      self.to_s.gsub(/\D/,'')
+      to_s.gsub(/\D/,'')
     end
 
     # Monta a linha digitável padrão para todos os bancos segundo a BACEN.
