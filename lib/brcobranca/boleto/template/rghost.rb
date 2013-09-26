@@ -179,7 +179,7 @@ module Brcobranca
           doc.show boleto.local_pagamento
           doc.moveto :x => '16.5 cm' , :y => '16 cm'
           doc.show boleto.data_vencimento.to_s_br if boleto.data_vencimento
-          doc.moveto :x => '1.5 cm' , :y => '16.4 cm'
+          doc.moveto :x => '1.5 cm' , :y => '15.6 cm'
           doc.show boleto.cedente
           doc.moveto :x => '0.75 cm' , :y => '15.2 cm'
           doc.show "End: #{boleto.cedente_endereco}" if boleto.cedente_endereco
