@@ -141,7 +141,7 @@ module Brcobranca
           doc.show boleto.codigo_barras.linha_digitavel, :tag => :grande
           doc.moveto :x => '1 cm' , :y => '22 cm'
           doc.show boleto.cedente
-          doc.moveto :x => '0.25 cm' , :y => '23 cm'
+          doc.moveto :x => '0.75 cm' , :y => '23 cm'
           doc.show "End: #{boleto.cedente_endereco}" if boleto.cedente_endereco
           doc.moveto :x => '11 cm' , :y => '23 cm'
           doc.show boleto.agencia_conta_boleto
