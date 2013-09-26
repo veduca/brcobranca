@@ -139,7 +139,7 @@ module Brcobranca
           doc.show "#{boleto.banco}-#{boleto.banco_dv}", :tag => :grande
           doc.moveto :x => '7.5 cm' , :y => '23.85 cm'
           doc.show boleto.codigo_barras.linha_digitavel, :tag => :grande
-          doc.moveto :x => '1.50 cm' , :y => '23.50 cm'
+          doc.moveto :x => '1.5 cm' , :y => '23.4 cm'
           doc.show boleto.cedente
           doc.moveto :x => '0.75 cm' , :y => '23 cm'
           doc.show "End: #{boleto.cedente_endereco}" if boleto.cedente_endereco
@@ -179,8 +179,10 @@ module Brcobranca
           doc.show boleto.local_pagamento
           doc.moveto :x => '16.5 cm' , :y => '16 cm'
           doc.show boleto.data_vencimento.to_s_br if boleto.data_vencimento
-          doc.moveto :x => '0.7 cm' , :y => '15.2 cm'
+          doc.moveto :x => '1.5 cm' , :y => '16.4 cm'
           doc.show boleto.cedente
+          doc.moveto :x => '0.75 cm' , :y => '15.2 cm'
+          doc.show "End: #{boleto.cedente_endereco}" if boleto.cedente_endereco
           doc.moveto :x => '16.5 cm' , :y => '15.2 cm'
           doc.show boleto.agencia_conta_boleto
           doc.moveto :x => '0.7 cm' , :y => '14.4 cm'
