@@ -69,6 +69,17 @@ module Brcobranca
       return valor > 9 ? 0 : valor
     end
 
+    # Calcula módulo 11 com multiplicaroes de 2 a 9 (Utilizado pelo Santander - boletos 033).
+    #
+    # @return [Integer]
+    def modulo11_2to9_santander
+      total = self.multiplicador([2,3,4,5,6,7,8,9])
+      valor = total % 11
+      return 1 if valor == 10
+      return 0 if [0,1].include?(valor)
+      return (11 - valor)
+    end
+
     # Calcula módulo 11 com multiplicaroes de 9 a 2 trocando retorno <b>10 por X</b>.
     #
     # @return [Integer, String] Caso resultado for 10, retorna X.

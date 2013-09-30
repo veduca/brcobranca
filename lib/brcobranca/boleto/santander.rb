@@ -14,7 +14,7 @@ module Brcobranca
 
       validates_length_of :agencia, :maximum => 4, :message => "deve ser menor ou igual a 4 dígitos."
       validates_length_of :convenio, :maximum => 7, :message => "deve ser menor ou igual a 7 dígitos."
-      validates_length_of :numero_documento, :maximum => 8, :message => "deve ser menor ou igual a 8 dígitos."
+      validates_length_of :numero_documento, :maximum => 12, :message => "deve ser menor ou igual a 12 dígitos."
       validates_length_of :conta_corrente, :maximum => 9, :message => "deve ser menor ou igual a 9 dígitos."
       validates_length_of :seu_numero, :maximum => 7, :message => "deve ser menor ou igual a 7 dígitos."
 
@@ -50,7 +50,7 @@ module Brcobranca
       # Número seqüencial utilizado para identificar o boleto.
       # @return [String] 8 caracteres numéricos.
       def numero_documento=(valor)
-        @numero_documento = valor.to_s.rjust(8,'0') if valor
+        @numero_documento = valor.to_s.rjust(12,'0') if valor
       end
 
       # Número seqüencial utilizado para identificar o boleto.
@@ -62,8 +62,7 @@ module Brcobranca
       # Dígito verificador do nosso número.
       # @return [String] 1 caracteres numéricos.
       def nosso_numero_dv
-        nosso_numero = self.numero_documento.to_s.rjust(12,'0') unless self.numero_documento.nil?
-        nosso_numero.modulo11_2to9
+        self.numero_documento.modulo11_2to9_santander
       end
 
       # Nosso número para exibir no boleto.
@@ -71,8 +70,7 @@ module Brcobranca
       # @example
       #  boleto.nosso_numero_boleto #=> "000090002720-7"
       def nosso_numero_boleto
-        nosso_numero = self.numero_documento.to_s.rjust(12,'0') unless self.numero_documento.nil?
-        "#{nosso_numero}-#{self.nosso_numero_dv}"
+        "#{self.numero_documento}-#{self.nosso_numero_dv}"
       end
 
       # Agência + codigo do cedente do cliente para exibir no boleto.
@@ -86,14 +84,13 @@ module Brcobranca
       # Segunda parte do código de barras.
       # 9(01) | Fixo 9 <br/>
       # 9(07) | Convenio <br/>
-      # 9(05) | Fixo 00000<br/>
-      # 9(08) | Nosso Numero<br/>
+      # 9(13) | Nosso Numero<br/>
       # 9(01) | IOF<br/>
       # 9(03) | Carteira de cobrança<br/>
       #
       # @return [String] 25 caracteres numéricos.
       def codigo_barras_segunda_parte
-        "9#{self.convenio}0000#{self.numero_documento}#{self.nosso_numero_dv}0#{self.carteira_numero}"
+        "9#{self.convenio}#{self.numero_documento}#{self.nosso_numero_dv}0#{self.carteira_numero}"
       end
 
     end

@@ -62,7 +62,7 @@ describe Brcobranca::Boleto::Santander do
     boleto_novo.conta_corrente.should eql("133536781")
     boleto_novo.agencia.should eql("0059")
     boleto_novo.convenio.should eql("1899775")
-    boleto_novo.numero_documento.should eql("90000267")
+    boleto_novo.numero_documento.should eql("000090000267")
     boleto_novo.carteira.should eql("CSR")
     boleto_novo.carteira_numero.should eql("102")
   end
@@ -70,9 +70,9 @@ describe Brcobranca::Boleto::Santander do
   it "Gerar boleto" do
     @valid_attributes[:data_documento] = Date.parse("2011/10/08")
     boleto_novo = Brcobranca::Boleto::Santander.new(@valid_attributes)
-    boleto_novo.codigo_barras_segunda_parte.should eql("9189977500009000026710102")
-    boleto_novo.codigo_barras.should eql("03392511500000025009189977500009000026710102")
-    boleto_novo.codigo_barras.linha_digitavel.should eql("03399.18997 77500.009004 00267.101020 2 51150000002500")
+    boleto_novo.codigo_barras_segunda_parte.should eql("9189977500009000026700102")
+    boleto_novo.codigo_barras.should eql("03398511500000025009189977500009000026700102")
+    boleto_novo.codigo_barras.linha_digitavel.should eql("03399.18997 77500.009004 00267.001022 8 51150000002500")
 
     @valid_attributes[:valor] = 54.00
     @valid_attributes[:numero_documento] = "90002720"
