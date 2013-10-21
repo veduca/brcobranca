@@ -305,6 +305,8 @@ module Brcobranca
           doc.show boleto.instrucao5
           doc.moveto :x => colunas[2] , :y => linhas[10]
           doc.show boleto.instrucao6
+          doc.moveto :x => colunas[2] , :y => linhas[11]
+          doc.show boleto.instrucao7
 
           #Sacado
           doc.moveto :x => colunas[2] , :y => linhas[11]
